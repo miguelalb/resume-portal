@@ -3,7 +3,7 @@ package com.miguelacevedoportfolio.resumeportal.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "User")
+@Table
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-	<title>Jonathan Doe | Web Designer, Director | name@yourdomain.com</title>
+	<title th:text="${userProfile.fullName} + ' | ' + ${userProfile.designation} + ' | ' + ${userProfile.email}">Jonathan Doe | Web Designer, Director | name@yourdomain.com</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 	<meta name="keywords" content="" />
-	<meta name="description" content="" />
+	<meta name="description" content="Curriculum Vitae" th:content="${'The Curriculum Vitae of ' + userProfile.fullName }"/>
 
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
 	<link rel="stylesheet" type="text/css" href="../profile-templates/3/resume.css" media="all" />
@@ -20,15 +20,15 @@
 		<div id="hd">
 			<div class="yui-gc">
 				<div class="yui-u first">
-					<h1>Jonathan Doe</h1>
-					<h2>Web Designer, Director</h2>
+					<h1 th:text="${userProfile.fullName}">Jonathan Doe</h1>
+					<h2 th:text="${userProfile.designation}">Web Designer, Director</h2>
 				</div>
 
 				<div class="yui-u">
 					<div class="contact-info">
 						<h3><a id="pdf" href="#">Download PDF</a></h3>
-						<h3><a href="mailto:name@yourdomain.com">name@yourdomain.com</a></h3>
-						<h3>(313) - 867-5309</h3>
+						<h3><a href="#" th:href="'mailto:'+ ${userProfile.email}" th:text="${userProfile.email}">name@yourdomain.com</a></h3>
+						<h3 th:text="${userProfile.phone}">(313) - 867-5309</h3>
 					</div><!--// .contact-info -->
 				</div>
 			</div><!--// .yui-gc -->
@@ -105,27 +105,12 @@
 
 						<div class="yui-u">
 
-							<div class="job">
-								<h2>Facebook</h2>
-								<h3>Senior Interface Designer</h3>
-								<h4>2005-2007</h4>
-								<p>Intrinsicly enable optimal core competencies through corporate relationships. Phosfluorescently implement worldwide vortals and client-focused imperatives. Conveniently initiate virtual paradigms and top-line convergence. </p>
+							<div class="job" th:each="job : ${userProfile.jobs}">
+								<h2 th:text="${job.company}">Facebook</h2>
+								<h3 th:text="${job.designation}">Senior Interface Designer</h3>
+								<h4 th:text="${job.startDate} + '-' + ${job.endDate}">2005-2007</h4>
+								<p th:text="${job.responsibility}">Intrinsicly enable optimal core competencies through corporate relationships. Phosfluorescently implement worldwide vortals and client-focused imperatives. Conveniently initiate virtual paradigms and top-line convergence. </p>
 							</div>
-
-							<div class="job">
-								<h2>Apple Inc.</h2>
-								<h3>Senior Interface Designer</h3>
-								<h4>2005-2007</h4>
-								<p>Progressively reconceptualize multifunctional "outside the box" thinking through inexpensive methods of empowerment. Compellingly morph extensive niche markets with mission-critical ideas. Phosfluorescently deliver bricks-and-clicks strategic theme areas rather than scalable benefits. </p>
-							</div>
-
-							<div class="job">
-								<h2>Microsoft</h2>
-								<h3>Principal and Creative Lead</h3>
-								<h4>2004-2005</h4>
-								<p>Intrinsicly transform flexible manufactured products without excellent intellectual capital. Energistically evisculate orthogonal architectures through covalent action items. Assertively incentivize sticky platforms without synergistic materials. </p>
-							</div>
-
 
 							<div class="job last">
 								<h2>International Business Machines (IBM)</h2>
@@ -154,7 +139,7 @@
 		</div><!--// bd -->
 
 		<div id="ft">
-			<p>Jonathan Doe &mdash; <a href="mailto:name@yourdomain.com">name@yourdomain.com</a> &mdash; (313) - 867-5309</p>
+			<p th:text="${userProfile.fullName}">Jonathan Doe &mdash; <a href="#" th:href="'mailto:'+ ${userProfile.email}" th:text="${userProfile.email}">name@yourdomain.com</a> &mdash; <span th:text="${userProfile.phone}">(313) - 867-5309</span></p>
 		</div><!--// footer -->
 
 	</div><!-- // inner -->

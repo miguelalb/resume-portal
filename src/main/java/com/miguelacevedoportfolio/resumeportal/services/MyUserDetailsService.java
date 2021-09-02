@@ -1,4 +1,4 @@
-package com.miguelacevedoportfolio.resumeportal;
+package com.miguelacevedoportfolio.resumeportal.services;
 
 import com.miguelacevedoportfolio.resumeportal.models.MyUserDetails;
 
