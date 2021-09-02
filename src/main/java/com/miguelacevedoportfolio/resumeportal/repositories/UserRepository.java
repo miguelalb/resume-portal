@@ -1,4 +1,4 @@
-package com.miguelacevedoportfolio.resumeportal;
+package com.miguelacevedoportfolio.resumeportal.repositories;
 
 import com.miguelacevedoportfolio.resumeportal.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;

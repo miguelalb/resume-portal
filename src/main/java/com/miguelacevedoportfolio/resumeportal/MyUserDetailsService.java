@@ -3,6 +3,7 @@ package com.miguelacevedoportfolio.resumeportal;
 import com.miguelacevedoportfolio.resumeportal.models.MyUserDetails;
 
 import com.miguelacevedoportfolio.resumeportal.models.User;
+import com.miguelacevedoportfolio.resumeportal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

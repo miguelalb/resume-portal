@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "com.miguelacevedoportfolio.resumeportal.repositories")
 public class ResumePortalApplication {
 
 	public static void main(String[] args) {
