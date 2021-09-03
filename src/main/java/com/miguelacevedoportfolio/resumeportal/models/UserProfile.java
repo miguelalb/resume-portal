@@ -19,10 +19,18 @@ public class UserProfile {
     private String phone;
     private String designation;
 
+    @ElementCollection(targetClass=String.class)
+    private List<String> skills = new ArrayList<>();
+
     @OneToMany(cascade = CascadeType.ALL,
         orphanRemoval = true)
     @JoinColumn(name = "job_id")
     List<Job> jobs = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JoinColumn(name = "education_id")
+    List<Education> educations = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -44,8 +52,24 @@ public class UserProfile {
         return theme;
     }
 
+    public List<Education> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(List<Education> educations) {
+        this.educations = educations;
+    }
+
     public void setTheme(int theme) {
         this.theme = theme;
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
     }
 
     public String getSummary() {

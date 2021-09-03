@@ -8,26 +8,27 @@ import java.util.List;
 
 @Entity
 @Table
-public class Job {
+public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String company;
-    private String designation;
+    private String college;
+    private String qualification;
     private LocalDate startDate;
     private LocalDate endDate;
-    private boolean isCurrentJob;
-    @ElementCollection(targetClass=String.class)
-    private List<String> responsibilities = new ArrayList<>();
+    private boolean isCurrent;
+    private String summary;
 
     @Override
     public String toString() {
-        return "Job{" +
+        return "Education{" +
                 "id=" + id +
-                ", company='" + company + '\'' +
-                ", designation='" + designation + '\'' +
+                ", college='" + college + '\'' +
+                ", qualification='" + qualification + '\'' +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
+                ", isCurrent=" + isCurrent +
+                ", summary='" + summary + '\'' +
                 '}';
     }
 
@@ -39,20 +40,20 @@ public class Job {
         this.id = id;
     }
 
-    public String getCompany() {
-        return company;
+    public String getCollege() {
+        return college;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setCollege(String college) {
+        this.college = college;
     }
 
-    public String getDesignation() {
-        return designation;
+    public String getQualification() {
+        return qualification;
     }
 
-    public void setDesignation(String designation) {
-        this.designation = designation;
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
     }
 
     public LocalDate getStartDate() {
@@ -67,24 +68,24 @@ public class Job {
         return endDate;
     }
 
-    public List<String> getResponsibilities() {
-        return responsibilities;
-    }
-
-    public void setResponsibilities(List<String> responsibilities) {
-        this.responsibilities = responsibilities;
-    }
-
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public boolean isCurrentJob() {
-        return isCurrentJob;
+    public boolean isCurrent() {
+        return isCurrent;
     }
 
-    public void setCurrentJob(boolean currentJob) {
-        isCurrentJob = currentJob;
+    public void setCurrent(boolean current) {
+        isCurrent = current;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public String getFormattedStartDate() {

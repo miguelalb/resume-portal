@@ -17,7 +17,9 @@
 <body id="top">
 <div id="cv" class="instaFade">
 	<div class="mainDetails">
-
+		<div id="headshot" class="quickFade">
+			<img src="../profile-templates/1/profile.jpg" th:alt="${userProfile.fullName}">
+		</div>
 		
 		<div id="name">
 			<h1 class="quickFade delayTwo">
@@ -57,13 +59,15 @@
 			</div>
 			
 			<div class="sectionContent" >
-				<article th:each="job : ${userProfile.jobs}">
+				<article class="job" th:each="job : ${userProfile.jobs}">
 					<h2><span th:text="${job.designation}">Job Title</span> at <span th:text="${job.company}">Company</span></h2>
 					<p class="subDetails">
 						<span th:text="${job.formattedStartDate}">April 2011</span> -
-						<span th:text="${job.formattedEndDate}">Present</span></p>
-					<ul >
-						<li th:text="${job.responsibility}">Responsibility</li>
+						<span th:text="${job.isCurrentJob} ? 'Present' : ${job.formattedEndDate}">Present</span></p>
+					<ul>
+						<li th:each="resp : ${job.responsibilities}">
+							<span th:text="${resp}">Responsibility</span>
+						</li>
 					</ul>
 				</article>
 			</div>
@@ -78,7 +82,9 @@
 			
 			<div class="sectionContent">
 				<ul class="keySkills">
-					<li >A Key Skill</li>
+					<li th:each="skill : ${userProfile.skills}">
+						<span th:text="${skill}">A Key Skill</span>
+					</li>
 				</ul>
 			</div>
 			<div class="clear"></div>
@@ -91,10 +97,10 @@
 			</div>
 			
 			<div class="sectionContent">
-				<article>
-					<h2 >College/University</h2>
-					<p class="subDetails" >Qualification</p>
-					<p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
+				<article th:each="education : ${userProfile.educations}">
+					<h2 th:text="${education.college}">College/University</h2>
+					<p class="subDetails" th:text="${education.qualification}">Qualification</p>
+					<p th:text="${education.summary}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
 				</article>
 
 			</div>

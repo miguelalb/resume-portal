@@ -61,28 +61,29 @@
             <dd class="clear"></dd>
             
             <dt>Education</dt>
-            <dd>
-                <h2>Withering Madness University - Planet Vhoorl</h2>
-                <p><strong>Major:</strong> Public Relations<br />
-                   <strong>Minor:</strong> Scale Tending</p>
+            <dd th:each="education : ${userProfile.educations}">
+                <h2 th:text="${education.college}">Withering Madness University - Planet Vhoorl</h2>
+                <p><strong>Major:</strong> <span th:text="${education.qualification}">Public Relations</span><br />
+                   <strong>Description:</strong> <span th:text="${education.summary}">Scale Tending</span></p>
             </dd>
             
             <dd class="clear"></dd>
             
             <dt>Skills</dt>
-            <dd>
-                <h2>Office skills</h2>
-                <p>Office and records management, database administration, event organization, customer support, travel coordination</p>
-                
-                <h2>Computer skills</h2>
-                <p>Microsoft productivity software (Word, Excel, etc), Adobe Creative Suite, Windows</p>
+            <dd th:each="skill : ${userProfile.skills}">
+                <h3 th:text="${skill}">Office skills</h3>
             </dd>
             
             <dd class="clear"></dd>
             
             <dt>Experience</dt>
             <dd th:each="job : ${userProfile.jobs}">
-                <h2 th:text="${job.company}">Doomsday Cult <span th:text="${job.designation}">Leader/Overlord - Baton Rogue, LA - <span th:text="${job.startDate} + '-' + ${job.endDate}">1926-2010</span></span></h2>
+                <h2 th:text="${job.company}">
+                    Doomsday Cult
+                    <span th:text="${job.designation} + ' - '">Leader/Overlord - Baton Rogue, LA -
+                        <span th:text="${job.formattedStartDate}">1926</span>-
+                        <span th:text="${job.isCurrentJob} ? 'Present' : ${job.formattedEndDate}">2010</span>
+                </h2>
                 <ul>
                     <li th:text="${job.responsibility}">Inspired and won highest peasant death competition among servants</li>
                 </ul>

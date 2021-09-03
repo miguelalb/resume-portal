@@ -84,6 +84,9 @@ p {
 	color: #444;
 }
 
+.job {
+    margin: 1rem 0;
+}
 #contactDetails ul li a, a[href^=tel] {
 	color: #444; 
 	text-decoration: none;
