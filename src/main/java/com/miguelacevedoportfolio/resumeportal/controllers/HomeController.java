@@ -100,13 +100,20 @@ public class HomeController {
     }
 
     @GetMapping("/edit")
-    public String edit(Principal principal, Model model) {
+    public String edit(Principal principal, Model model, @RequestParam(required = false) String add) {
         String userId = principal.getName();
         model.addAttribute("userId", userId);
 
         Optional<UserProfile> userProfileOptional = userProfileRepository.findByUserName(userId);
         userProfileOptional.orElseThrow(() -> new RuntimeException("Not found: " + userId));
         UserProfile userProfile = userProfileOptional.get();
+
+        if ("job".equals(add))
+            userProfile.getJobs().add(new Job());
+        else if ("education".equals(add))
+            userProfile.getEducations().add(new Education());
+        else if ("skill".equals(add))
+            userProfile.getSkills().add("");
 
         model.addAttribute("userProfile", userProfile);
         return "profile-edit";
