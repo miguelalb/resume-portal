@@ -93,7 +93,11 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0" th:text="${job.designation}">Senior Web Developer</h3>
                             <div class="subheading mb-3" th:text="${job.company}">Intelitec Solutions</div>
-                            <p th:text="${job.responsibility}">Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+                            <ul>
+                                <li th:each="resp : ${job.responsibilities}">
+                                    <span th:text="${resp}">Responsibility</span>
+                                </li>
+                            </ul>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary"><span th:text="${job.formattedStartDate}">March 2013</span> - <span th:text="${job.isCurrentJob} ? 'Present' : ${job.formattedEndDate}">Present</span></span></div>
                     </div>

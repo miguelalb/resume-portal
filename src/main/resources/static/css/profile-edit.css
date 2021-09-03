@@ -37,6 +37,7 @@ html, body {
     -webkit-align-items: center;
     align-items: center;
     padding: 40px;
+    /* overflow: scroll; */
 }
 
 .form-content .form-items {
