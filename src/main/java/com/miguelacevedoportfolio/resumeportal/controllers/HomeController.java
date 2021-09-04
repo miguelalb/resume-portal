@@ -25,78 +25,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        Optional<UserProfile> profileOptional = userProfileRepository.findByUserName("einstein");
-        profileOptional.orElseThrow(() -> new RuntimeException("Not found "));
 
-        UserProfile profile1 = profileOptional.get();
-
-        List<String> responsibilities = Arrays.asList(
-                "Responsible for A, B and C.",
-                "Responsible for D, E and F.",
-                "Responsible for X, Y and Z.");
-
-        Job job0 = new Job();
-        job0.setCompany("Company 0");
-        job0.setDesignation("Designation");
-        job0.getResponsibilities().addAll(responsibilities);
-        job0.setStartDate(LocalDate.of(2020, 3, 1));
-        job0.setCurrentJob(true);
-        Job job1 = new Job();
-        job1.setCompany("Company 1");
-        job1.setDesignation("Designation");
-        job1.getResponsibilities().addAll(responsibilities);
-        job1.setStartDate(LocalDate.of(2020, 1, 1));
-        job1.setEndDate(LocalDate.of(2020, 3, 1));
-        Job job2 = new Job();
-        job2.setCompany("Company 2");
-        job2.setDesignation("Designation");
-        job2.getResponsibilities().addAll(responsibilities);
-        job2.setStartDate(LocalDate.of(2019, 5, 1));
-        job2.setEndDate(LocalDate.of(2020, 1, 1));
-
-        profile1.getJobs().clear();
-        profile1.getJobs().add(job0);
-        profile1.getJobs().add(job1);
-        profile1.getJobs().add(job2);
-
-        Education e1 = new Education();
-        e1.setCollege("Massachusetts Institute of Technology");
-        e1.setQualification("PH.D in Computational Science & Engineering");
-        e1.setSummary("Studied a lot.");
-        e1.setStartDate(LocalDate.of(2020, 3, 1));
-        e1.setCurrent(true);
-
-        Education e2 = new Education();
-        e2.setCollege("Carnegie Mellon University");
-        e2.setQualification("Masters in Applied Artificial Intelligence");
-        e2.setSummary("Studied a lot.");
-        e2.setStartDate(LocalDate.of(2018, 3, 1));
-        e2.setEndDate(LocalDate.of(2020, 1, 1));
-
-        Education e3 = new Education();
-        e3.setCollege("Harvard University");
-        e3.setQualification("Bachelors Engineering & Applied Sciences");
-        e3.setSummary("Studied a lot.");
-        e3.setStartDate(LocalDate.of(2014, 3, 1));
-        e3.setEndDate(LocalDate.of(2018, 3, 1));
-
-        profile1.getEducations().clear();
-        profile1.getEducations().add(e1);
-        profile1.getEducations().add(e2);
-        profile1.getEducations().add(e3);
-
-        List<String> skills = Arrays.asList(
-                "Java", "Python", "Spring Boot",
-                "Flask", "FastAPI", "Django",
-                "Javascript", "VueJS", "Angular",
-                "Docker", "Kubernetes", "AWS");
-
-        profile1.getSkills().addAll(skills);
-
-        userProfileRepository.save(profile1);
-
-        model.addAttribute("profile", profile1);
-        return "profile";
+        return "index";
     }
 
     @GetMapping("/edit")
