@@ -5,7 +5,9 @@
 
 <meta name="viewport" content="width=device-width"/>
 <meta name="description" content="Curriculum Vitae" th:content="${'The Curriculum Vitae of ' + userProfile.fullName }"/>
-<meta charset="UTF-8"> 
+<meta charset="UTF-8">
+	<!-- Font Awesome icons (free version)-->
+	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
 <link type="text/css" rel="stylesheet" href="../profile-templates/1/style.css">
 <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
@@ -25,6 +27,9 @@
 			<h1 class="quickFade delayTwo">
 				<span th:text="${userProfile.firstName}">Joe</span>
 				<span th:text="${userProfile.lastName}">Bloggs</span>
+				<a style="font-size:1.6rem;color:blue;text-decoration:none;text-transform:uppercase;" href="/edit" th:if="${currentUsersProfile}">
+					<i class="far fa-edit"></i> edit
+				</a>
 			</h1>
 			<h2 class="quickFade delayThree" th:text="${userProfile.designation}">Job Title</h2>
 		</div>

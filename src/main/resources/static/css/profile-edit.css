@@ -169,3 +169,8 @@ html, body {
 .valid-feedback{
    color: #2acc80;
 }
+
+a {
+    text-decoration: none;
+    color: #fff;
+}

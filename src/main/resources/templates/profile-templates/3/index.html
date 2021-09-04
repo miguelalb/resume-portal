@@ -7,6 +7,8 @@
 
 	<meta name="keywords" content="" />
 	<meta name="description" content="Curriculum Vitae" th:content="${'The Curriculum Vitae of ' + userProfile.fullName }"/>
+	<!-- Font Awesome icons (free version)-->
+	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
 	<link rel="stylesheet" type="text/css" href="../profile-templates/3/resume.css" media="all" />
@@ -20,12 +22,18 @@
 		<div id="hd">
 			<div class="yui-gc">
 				<div class="yui-u first">
-					<h1 th:text="${userProfile.fullName}">Jonathan Doe</h1>
+					<h1>
+						<span th:text="${userProfile.fullName}">Jonathan Doe</span>
+
+					</h1>
 					<h2 th:text="${userProfile.designation}">Web Designer, Director</h2>
 				</div>
 
 				<div class="yui-u">
 					<div class="contact-info">
+						<a style="font-size:1.6rem;color:blue;text-decoration:none;text-transform:uppercase;" href="/edit" th:if="${currentUsersProfile}">
+							<i class="far fa-edit"></i> edit
+						</a>
 						<h3><a id="pdf" href="#">Download PDF</a></h3>
 						<h3><a href="#" th:href="'mailto:'+ ${userProfile.email}" th:text="${userProfile.email}">name@yourdomain.com</a></h3>
 						<h3 th:text="${userProfile.phone}">(313) - 867-5309</h3>
