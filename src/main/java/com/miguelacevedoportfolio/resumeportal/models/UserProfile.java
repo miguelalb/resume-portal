@@ -32,6 +32,11 @@ public class UserProfile {
     @JoinColumn(name = "education_id")
     List<Education> educations = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JoinColumn(name = "socialmedia_id")
+    List<SocialMedia> socialMedias = new ArrayList<>();
+
     public int getId() {
         return id;
     }
@@ -52,24 +57,8 @@ public class UserProfile {
         return theme;
     }
 
-    public List<Education> getEducations() {
-        return educations;
-    }
-
-    public void setEducations(List<Education> educations) {
-        this.educations = educations;
-    }
-
     public void setTheme(int theme) {
         this.theme = theme;
-    }
-
-    public List<String> getSkills() {
-        return skills;
-    }
-
-    public void setSkills(List<String> skills) {
-        this.skills = skills;
     }
 
     public String getSummary() {
@@ -120,12 +109,36 @@ public class UserProfile {
         this.designation = designation;
     }
 
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
+
     public List<Job> getJobs() {
         return jobs;
     }
 
     public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
+    }
+
+    public List<Education> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(List<Education> educations) {
+        this.educations = educations;
+    }
+
+    public List<SocialMedia> getSocialMedias() {
+        return socialMedias;
+    }
+
+    public void setSocialMedias(List<SocialMedia> socialMedias) {
+        this.socialMedias = socialMedias;
     }
 
     public String getFullName() {

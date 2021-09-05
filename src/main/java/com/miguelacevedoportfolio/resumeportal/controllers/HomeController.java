@@ -2,19 +2,15 @@ package com.miguelacevedoportfolio.resumeportal.controllers;
 
 import com.miguelacevedoportfolio.resumeportal.models.Education;
 import com.miguelacevedoportfolio.resumeportal.models.Job;
+import com.miguelacevedoportfolio.resumeportal.models.SocialMedia;
 import com.miguelacevedoportfolio.resumeportal.models.UserProfile;
 import com.miguelacevedoportfolio.resumeportal.repositories.UserProfileRepository;
-import com.miguelacevedoportfolio.resumeportal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -38,32 +34,25 @@ public class HomeController {
         userProfileOptional.orElseThrow(() -> new RuntimeException("Not found: " + userId));
         UserProfile userProfile = userProfileOptional.get();
 
-        if ("job".equals(add))
-            userProfile.getJobs().add(new Job());
-        else if ("education".equals(add))
-            userProfile.getEducations().add(new Education());
-        else if ("skill".equals(add))
-            userProfile.getSkills().add("");
+        if (add != null) {
+            switch (add) {
+                case "job":
+                    userProfile.getJobs().add(new Job());
+                    break;
+                case "education":
+                    userProfile.getEducations().add(new Education());
+                    break;
+                case "skill":
+                    userProfile.getSkills().add("");
+                    break;
+                case "socialmedia":
+                    userProfile.getSocialMedias().add(new SocialMedia());
+                    break;
+            }
+        }
 
         model.addAttribute("userProfile", userProfile);
         return "profile-edit";
-    }
-
-    @GetMapping("/delete")
-    public String delete(Principal principal, Model model, @RequestParam String type, @RequestParam int index) {
-        String userId = principal.getName();
-        model.addAttribute("userId", userId);
-        Optional<UserProfile> userProfileOptional = userProfileRepository.findByUserName(userId);
-        userProfileOptional.orElseThrow(() -> new RuntimeException("Not found: " + userId));
-        UserProfile userProfile = userProfileOptional.get();
-        if ("job".equals(type))
-            userProfile.getJobs().remove(index);
-        else if ("education".equals(type))
-            userProfile.getEducations().remove(index);
-        else if ("skill".equals(type))
-            userProfile.getSkills().remove(index);
-        userProfileRepository.save(userProfile);
-        return "redirect:/edit";
     }
 
     @PostMapping("/edit")
@@ -76,6 +65,32 @@ public class HomeController {
         userProfile.setUserName(userName);
         userProfileRepository.save(userProfile);
         return "redirect:/view/" + userName;
+    }
+
+    @GetMapping("/delete")
+    public String delete(Principal principal, Model model, @RequestParam String type, @RequestParam int index) {
+        String userId = principal.getName();
+        model.addAttribute("userId", userId);
+        Optional<UserProfile> userProfileOptional = userProfileRepository.findByUserName(userId);
+        userProfileOptional.orElseThrow(() -> new RuntimeException("Not found: " + userId));
+        UserProfile userProfile = userProfileOptional.get();
+
+        switch (type) {
+            case "job":
+                userProfile.getJobs().remove(index);
+                break;
+            case "education":
+                userProfile.getEducations().remove(index);
+                break;
+            case "skill":
+                userProfile.getSkills().remove(index);
+                break;
+            case "socialmedia":
+                userProfile.getSocialMedias().remove(index);
+                break;
+        }
+        userProfileRepository.save(userProfile);
+        return "redirect:/edit";
     }
 
     @GetMapping("/view/{userId}")
