@@ -10,11 +10,13 @@
 	</parent>
 	<groupId>com.miguelacevedoportfolio</groupId>
 	<artifactId>resume-portal</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>resume-portal</name>
 	<description>Editable multi-template resume portal</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,8 +47,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
